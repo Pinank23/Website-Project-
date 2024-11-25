@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT DATA</title>
+    <link rel="stylesheet" href="api.css">
+</head>
+<body>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Tags</th>
+                <th>Weight</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Stock</th>
+                <th>Availability Status</th>
+                <th>Return Policy</th>
+            </tr>
+        </thead>
+        <tbody id="data-body">
+        </tbody>
+    </table>
+    <script>
+        const apiUrl = 'https://dummyjson.com/products';
+        const dataBody = document.getElementById('data-body');
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const products = data.products;
+                for (let i = 0; i < products.length; i++) {
+                    const row = document.createElement('tr');
+                    const idCell = document.createElement('td');
+                    const nameCell = document.createElement('td');
+                    const descriptionCell = document.createElement('td');
+                    const priceCell = document.createElement('td');
+                    const tagsCell = document.createElement('td');
+                    const weightCell = document.createElement('td');
+                    const brandCell = document.createElement('td');
+                    const categoryCell = document.createElement('td');
+                    const ratingCell = document.createElement('td');
+                    const stockCell = document.createElement('td');
+                    const availabilityStatusCell = document.createElement('td');
+                    const returnPolicyCell = document.createElement('td');
+
+                    idCell.textContent = products[i].id;
+                    nameCell.textContent = products[i].title;
+                    descriptionCell.textContent = products[i].description;
+                    priceCell.textContent = products[i].price;
+                    tagsCell.textContent = products[i].tags.join(', '); 
+                    weightCell.textContent = products[i].weight;
+                    brandCell.textContent = products[i].brand;
+                    categoryCell.textContent = products[i].category;
+                    ratingCell.textContent = products[i].rating;
+                    stockCell.textContent = products[i].stock;
+                    availabilityStatusCell.textContent = products[i].availabilityStatus;
+                    returnPolicyCell.textContent = products[i].returnPolicy;
+
+                    row.appendChild(idCell);
+                    row.appendChild(nameCell);
+                    row.appendChild(descriptionCell);
+                    row.appendChild(priceCell);
+                    row.appendChild(tagsCell);
+                    row.appendChild(weightCell);
+                    row.appendChild(brandCell);
+                    row.appendChild(categoryCell);
+                    row.appendChild(ratingCell);
+                    row.appendChild(stockCell);
+                    row.appendChild(availabilityStatusCell);
+                    row.appendChild(returnPolicyCell);
+
+                    dataBody.appendChild(row);
+                }
+            })
+    </script>
+</body>
+</html>
